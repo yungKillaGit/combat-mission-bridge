@@ -1,0 +1,20 @@
+"Список возможных промокодов"
+enum PromoCodeType {
+  Discount20VipFrom2Hours
+}
+
+"Список существующих достижений"
+enum AchievementEnum {
+  TeamPlayer
+  Visitor
+  Correspondent
+  LivingFullLife
+  Warrior
+  RichSoul
+  BorderGuard
+}
+
+enum ReceivedPromoCode {
+  visitor
+  warrior
+}

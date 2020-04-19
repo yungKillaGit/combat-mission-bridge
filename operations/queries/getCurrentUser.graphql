@@ -1,0 +1,53 @@
+query getCurrentUser {
+    currentUser {
+        user {
+            achievementsReceived {
+                id
+                iconImageUrl
+                title
+                description
+                points
+                rankPoints
+                storyImageUrls
+                snippetImageUrls
+            }
+            achievementsProgress {
+                achievementId
+                progress
+            }
+            activatedChecks
+            avatarUrl
+            id
+            promoCodes {
+                ... on UserOpenedPromoCode {
+                    id
+                    type
+                    title
+                    value
+                    openedAt
+                    expiresAt
+                }
+                ... on UserClosedPromoCode {
+                    id
+                    type
+                    title
+                    expiresAt
+                }
+            }
+            points
+            rank {
+                name
+                minPoints
+                imageUrl
+            }
+            lastFixedVisitDate
+            nextRank {
+                name
+                minPoints
+                imageUrl
+            }
+            visitsInRow
+        }
+        receivedPromoCodes
+    }
+}

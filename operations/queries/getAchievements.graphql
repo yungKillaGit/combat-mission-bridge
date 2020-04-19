@@ -1,0 +1,12 @@
+query getAchievements {
+    achievements {
+        id
+        iconImageUrl
+        title
+        description
+        points
+        rankPoints
+        storyImageUrls
+        snippetImageUrls
+    }
+}

@@ -1,0 +1,70 @@
+mutation activateCheck($check: String!) {
+    activateCheck(check: $check) {
+        message
+        activated
+        user {
+            achievementsReceived {
+                id
+                iconImageUrl
+                title
+                description
+                points
+                rankPoints
+                storyImageUrls
+                snippetImageUrls
+            }
+            achievementsProgress {
+                achievementId
+                progress
+            }
+            activatedChecks
+            avatarUrl
+            id
+            promoCodes {
+                ... on UserOpenedPromoCode {
+                    id
+                    type
+                    title
+                    value
+                    openedAt
+                    expiresAt
+                }
+                ... on UserClosedPromoCode {
+                    id
+                    type
+                    title
+                    expiresAt
+                }
+            }
+            profile {
+                age
+                about
+                city
+                clubId
+                games {
+                    id
+                    title
+                }
+                playTime
+                stage {
+                    id
+                    title
+                }
+            }
+            points
+            rank {
+                name
+                minPoints
+                imageUrl
+            }
+            lastFixedVisitDate
+            nextRank {
+                name
+                minPoints
+                imageUrl
+            }
+            visitsInRow
+        }
+        promoReceived
+    }
+}

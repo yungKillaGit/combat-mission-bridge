@@ -1,0 +1,12 @@
+query getProfileMeta {
+    profileMeta {
+        games {
+            id
+            title
+        }
+        stages {
+            id
+            title
+        }
+    }
+}

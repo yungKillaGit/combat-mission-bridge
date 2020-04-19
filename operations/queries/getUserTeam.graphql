@@ -1,0 +1,9 @@
+query getUserTeam {
+    userTeam {
+        _id
+        users {
+            id
+            avatarUrl
+        }
+    }
+}

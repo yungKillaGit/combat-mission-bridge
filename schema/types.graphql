@@ -1,0 +1,182 @@
+"Базовый тип Query"
+type Query {
+    currentUser: CurrentUserInfo!
+    userTeam: Team
+    user(id: Int!): UserInfo
+    profileMeta: ProfileMeta!
+    mates(searchFilter: SearchFilterInput!): [UserInfo!]
+    achievements: [Achievement!]!
+}
+
+"Базовый тип Mutation"
+type Mutation {
+    activateCheck(check: String!): CheckActivationInfo!
+    saveProfile(profile: ProfileInput!): Profile
+    deleteProfile: Boolean!
+    registerUser(user: UserInput!): UserRegistrationInfo!
+    joinTargetUser(targetUserId: Int!): Team!
+    leaveTeam: Boolean!
+    openPromoCode(promoCodeId: String!): UserPromoCode
+    getAchievementForPostSharing: AchievementProccingInfo!
+    getAchievementForGroupSubscription: AchievementProccingInfo!
+}
+
+"Информация о текущем пользователе"
+type CurrentUserInfo {
+    user: User!
+    receivedPromoCodes: [ReceivedPromoCode!]
+}
+
+"Информация о пользователе по id"
+type UserInfo {
+    achievementsReceived: [Achievement!]!
+    avatarUrl: String
+    id: Int!
+    profile: Profile
+    rank: Rank
+}
+
+"Пользователь"
+type User {
+    achievementsReceived: [Achievement!]!
+    achievementsProgress: [AchievementProgress!]!
+    activatedChecks: [String!]!
+    avatarUrl: String
+    id: Int!
+    promoCodes: [UserPromoCode!]!
+    profile: Profile
+    points: Int!
+    rank: Rank
+    lastFixedVisitDate: Float!
+    nextRank: Rank
+    visitsInRow: Int!
+}
+
+"Ранг который присуждается пользователю"
+type Rank {
+    name: String!
+    minPoints: Int!
+    imageUrl: String!
+}
+
+"Запись, хранящая прогресс достижения"
+type AchievementProgress {
+    achievementId: AchievementEnum!
+    progress: Int
+}
+
+"Справочники и прочие данные для анкеты"
+type ProfileMeta {
+    games: [Game!]!
+    stages: [Stage!]!
+}
+
+"Игра"
+type Game {
+    id: Int!
+    title: String!
+}
+
+"Стаж"
+type Stage {
+    id: Int!
+    title: String!
+}
+
+"Фильтр для поиска напарников в команду"
+input SearchFilterInput {
+    city: String!
+    gamesIds: [Int!]!
+}
+
+"Достижение"
+type Achievement {
+    id: AchievementEnum!
+    iconImageUrl: String!
+    title: String!
+    description: String!
+    points: [Int!]
+    rankPoints: [Int!]
+    storyImageUrls: [String!]!
+    snippetImageUrls: [String!]!
+}
+
+"Информация об пройденной активации чека"
+type CheckActivationInfo {
+    message: String!
+    activated: Boolean!
+    user: User
+    promoReceived: Boolean!
+}
+
+"Входные данные для сохранения профиля"
+input ProfileInput {
+    age: Int!
+    about: String
+    city: String
+    clubId: Int
+    gamesIds: [Int!]!
+    playTime: Int
+    stageId: Int
+}
+
+"Профиль пользователя"
+type Profile {
+    age: Int!
+    about: String
+    city: String!
+    clubId: Int!
+    games: [Game!]!
+    playTime: Int!
+    stage: Stage!
+}
+
+"Входные данные для регистрации пользователя"
+input UserInput {
+    avatarUrl: String!
+}
+
+"Информация о пройденной регистрации пользователя"
+type UserRegistrationInfo {
+    user: User!
+    newbiePromoReceived: Boolean!
+}
+
+"Информация о процессе получения пользователем достижения"
+type AchievementProccingInfo {
+    user: User
+    promoReceived: Boolean!
+}
+
+"Команда пользователей"
+type Team {
+    _id: anything!
+    users: [TeamUser!]!
+}
+
+"Член команды"
+type TeamUser {
+    id: Int!
+    avatarUrl: String
+}
+
+"Отформатированный промокод для вывода пользователю"
+union UserPromoCode = UserOpenedPromoCode | UserClosedPromoCode
+
+"Еще не открытый пользователем промокод"
+type UserClosedPromoCode {
+    id: String!
+    type: PromoCodeType!
+    title: String!
+    expiresAt: date!
+}
+
+"Активированный пользователем промокод"
+type UserOpenedPromoCode {
+    id: String!
+    type: PromoCodeType!
+    title: String!
+    value: String!
+    openedAt: date!
+    expiresAt: date!
+}

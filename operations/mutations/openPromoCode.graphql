@@ -1,0 +1,18 @@
+mutation openPromoCode($promoCodeId: String!) {
+    openPromoCode(promoCodeId: $promoCodeId) {
+        ... on UserOpenedPromoCode {
+            id
+            type
+            title
+            value
+            openedAt
+            expiresAt
+        }
+        ... on UserClosedPromoCode {
+            id
+            type
+            title
+            expiresAt
+        }
+    }
+}

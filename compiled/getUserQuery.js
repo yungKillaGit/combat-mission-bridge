@@ -1,0 +1,4 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var graphql_tag_1 = require("graphql-tag");
+exports.getUserQuery = graphql_tag_1.default("query getUser($id: Int!) {\n    user(id: $id) {\n        achievementsReceived {\n            id\n            iconImageUrl\n            title\n            description\n            points\n            rankPoints\n            storyImageUrls\n            snippetImageUrls\n        }\n        avatarUrl\n        id\n        profile {\n            age\n            about\n            city\n            clubId\n            games {\n                id\n                title\n            }\n            playTime\n            stage {\n                id\n                title\n            }\n        }\n        rank {\n            name\n            minPoints\n            imageUrl\n        }\n    }\n}");

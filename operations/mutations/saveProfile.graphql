@@ -1,0 +1,17 @@
+mutation saveProfile($profile: ProfileInput!) {
+    saveProfile(profile: $profile) {
+        age
+        about
+        city
+        clubId
+        games {
+            id
+            title
+        }
+        playTime
+        stage {
+            id
+            title
+        }
+    }
+}

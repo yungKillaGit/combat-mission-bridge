@@ -1,0 +1,36 @@
+query searchMates($searchFilter: SearchFilterInput!) {
+    mates(searchFilter: $searchFilter) {
+        achievementsReceived {
+            id
+            iconImageUrl
+            title
+            description
+            points
+            rankPoints
+            storyImageUrls
+            snippetImageUrls
+        }
+        avatarUrl
+        id
+        profile {
+            age
+            about
+            city
+            clubId
+            games {
+                id
+                title
+            }
+            playTime
+            stage {
+                id
+                title
+            }
+        }
+        rank {
+            name
+            minPoints
+            imageUrl
+        }
+    }
+}

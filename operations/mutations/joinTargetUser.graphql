@@ -1,0 +1,9 @@
+mutation joinTargetUser($targetUserId: Int!) {
+    joinTargetUser(targetUserId: $targetUserId) {
+        _id
+        users {
+            id
+            avatarUrl
+        }
+    }
+}

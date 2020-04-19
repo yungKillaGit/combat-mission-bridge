@@ -1,0 +1,17 @@
+{
+  "name": "combat-mission-bridge",
+  "version": "1.0.0",
+  "main": "compiled/index.js",
+  "types": "compiled/index.d.ts",
+  "repository": "https://github.com/yungKillaGit/combat-mission-bridge.git",
+  "author": "yungKillaGit <59793907+yungKillaGit@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "gql-types-generator": "^1.4.10"
+  },
+  "scripts": {
+    "generate": "gql-types-generator --operations ./operations/**/*.graphql --operations-wrap --scalars \"{\\\"date\\\": \\\"string\\\"}\" --output-directory compiled ./schema/*.graphql",
+    "release": "git add -A && git commit --allow-empty -m \\\"Release\\\" && git push"
+  },
+  "private": false
+}
